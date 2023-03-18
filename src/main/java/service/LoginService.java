@@ -5,9 +5,11 @@ import repository.LoginRepository;
 
 public class LoginService {
 
+    public LoginService(){}
+
     LoginRepository loginRepository = new LoginRepository();
 
-    User login(String username, String password){
+    public User login(String username, String password){
         return  loginRepository.login(username,password);
     }
 }

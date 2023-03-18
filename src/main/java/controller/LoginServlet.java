@@ -25,13 +25,21 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
         if(action.equals("/login")) {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
             if (username == null || password == null) {
-                request.setAttribute("message", "'Loi dang nhap");
+                request.setAttribute("message", "Lỗi Đăng Nhập");
                 request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
+            } else {
+                User user = service.login(username, password);
+                if(user == null){
+                    request.setAttribute("message", "Lỗi Đăng Nhập");
+                    request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("message", "Đăng Nhập Thành Công");
+                    request.getRequestDispatcher("WEB-INF/dashboard.jsp").forward(request, response);
+                }
             }
         }
     }

@@ -1,4 +1,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +28,11 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
-                <c:if test="${not empty message}">
-                    <c:out value="${message}"/>
-                </c:if>
+                <div style="font-weight: bold;font-size: large;font-family: Arial;text-align: center">
+                    <c:if test="${not empty requestScope.message}">
+                        <c:out value="${requestScope.message}"/>
+                    </c:if>
+                </div>
             </form>
         </div>
     </div>
